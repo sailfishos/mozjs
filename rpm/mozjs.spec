@@ -14,7 +14,8 @@ Source:     %{name}-%{version}.tar.gz
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 BuildRequires:  python
-Requires:   pkgconfig(nspr)
+BuildRequires:  pkgconfig(nspr)
+BuildRequires:  pkgconfig(zlib)
 
 %description
 SpiderMonkey is Mozilla's JavaScript engine written in C/C++.
@@ -42,7 +43,8 @@ JavaScript interpreter from SpiderMonkey.
 cd %{name}/js/src
 
 %configure --disable-static \
-    --with-system-nspr
+    --with-system-nspr \
+    --with-system-zlib
 make %{?_smp_mflags}
 
 %install
