@@ -14,6 +14,7 @@ Source:     %{name}-%{version}.tar.gz
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 BuildRequires:  python
+Requires:   pkgconfig(nspr)
 
 %description
 SpiderMonkey is Mozilla's JavaScript engine written in C/C++.
@@ -22,7 +23,6 @@ SpiderMonkey is Mozilla's JavaScript engine written in C/C++.
 Summary:    Development files for SpiderMonkey
 Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
-Requires:   pkgconfig(nspr)
 
 %description devel
 Development files for SpiderMonkey.
@@ -41,7 +41,8 @@ JavaScript interpreter from SpiderMonkey.
 %build
 cd %{name}/js/src
 
-%configure --disable-static
+%configure --disable-static \
+    --with-system-nspr
 make %{?_smp_mflags}
 
 %install
